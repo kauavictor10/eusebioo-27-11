@@ -1,0 +1,2532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Imóveis - Portal Completo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f8f9fa;
+        color: #1a1a1a;
+      }
+
+      /* Header / Navigation */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px 0;
+        transition: all 0.3s ease;
+      }
+
+      .header.scrolled {
+        background: rgba(1, 28, 58, 0.95);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 15px 0;
+      }
+
+      .navbar-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 60px;
+        width: auto;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 40px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-menu a {
+        color: white;
+        font-size: 24px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-menu a:hover {
+        opacity: 0.8;
+      }
+
+      .btn-header {
+        background: white;
+        color: #1a1a1a;
+        font-size: 16px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 45px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+      }
+
+      .btn-header:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+      }
+
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+      }
+
+      .menu-toggle span {
+        width: 30px;
+        height: 3px;
+        background: white;
+        border-radius: 2px;
+      }
+
+      .hero {
+        position: relative;
+        height: 100vh;
+        min-height: 700px;
+        background-image: url("bannner.img/banner.jpg");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.4) 0%,
+          rgba(0, 0, 0, 0.4) 100%
+        );
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        max-width: 1200px;
+        padding: 0 40px;
+        text-align: left;
+      }
+
+      .hero-title {
+        color: white;
+        font-size: 70px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        line-height: 1.1;
+        margin-bottom: 30px;
+      }
+
+      .hero-title strong {
+        font-weight: 700;
+      }
+
+      .hero-subtitle {
+        color: white;
+        font-size: 24px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        line-height: 1.5;
+        margin-bottom: 40px;
+        max-width: 700px;
+      }
+
+      .btn-hero {
+        background: white;
+        color: #1a1a1a;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        padding: 16px 50px;
+        border: none;
+        border-radius: 45px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+      }
+
+      .btn-hero:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+      }
+
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+      }
+
+      .whatsapp-float svg {
+        width: 40px;
+        height: 40px;
+      }
+
+      /* CTA Box */
+      .cta-box {
+        position: relative;
+        z-index: 100;
+        padding: 80px 20px 120px;
+        margin-top: -100px;
+        margin-bottom: -80px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .cta-container {
+        background: #011c3a;
+        max-width: 800px;
+        padding: 35px 50px;
+        border-radius: 5px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .cta-title {
+        color: white;
+        font-size: 56px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        line-height: 1.1;
+      }
+
+      .cta-title strong {
+        font-weight: 700;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header com texto cinza */
+      .header-text {
+        text-align: center;
+        padding: 20px 0 40px;
+        font-size: 14px;
+        color: #666;
+        font-weight: 400;
+      }
+
+      .header-text strong {
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+
+      /* Seções */
+      .section {
+        margin-bottom: 60px;
+      }
+
+      .section-title {
+        font-size: 42px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 8px;
+      }
+
+      .section-description {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 30px;
+        line-height: 1.6;
+        max-width: 600px;
+      }
+
+      /* Grid de Cards */
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        margin-bottom: 25px;
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Card do Imóvel */
+      .property-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        aspect-ratio: 1 / 1.3;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .property-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      }
+
+      /* Imagem do Card */
+      .card-image {
+        position: relative;
+        width: 100%;
+        flex: 1;
+        overflow: hidden;
+        min-height: 0;
+      }
+
+      .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Badge de desconto */
+      .discount-badge {
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        background: #ff1744;
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+        padding: 6px 12px;
+        border-radius: 4px;
+        z-index: 2;
+      }
+
+      /* Corpo do Card */
+      .card-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .card-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1a1a1a;
+        line-height: 1.3;
+        min-height: 50px;
+      }
+
+      /* Informações do Card */
+      .card-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 14px;
+        color: #666;
+        flex-wrap: wrap;
+      }
+
+      .card-info-item {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .card-info-item svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* Preço do Card */
+      .card-price {
+        background: #001f3f;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 6px;
+        display: inline-block;
+      }
+
+      /* Dots de navegação */
+      .dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 25px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #ddd;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .dot.active {
+        background: #001f3f;
+      }
+
+      /* Botão Saiba Mais */
+      .btn-saiba-mais {
+        background: #ff1744;
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+        padding: 16px 50px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        display: block;
+        margin: 50px auto;
+        box-shadow: -8px 8px 0px #001f3f;
+        transition: all 0.3s ease;
+      }
+
+      .btn-saiba-mais:hover {
+        transform: translateY(-2px);
+        box-shadow: -10px 10px 0px #001f3f;
+      }
+
+      /* Seção Por que morar no Eusébio */
+      .section-eusebio {
+        background: #011c3a;
+        padding: 60px 0;
+        margin-bottom: 60px;
+        margin-left: -20px;
+        margin-right: -20px;
+      }
+
+      .eusebio-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .eusebio-left {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .eusebio-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .eusebio-title {
+        color: white;
+        font-size: 56px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        line-height: 1.1;
+      }
+
+      .eusebio-title strong {
+        font-weight: 700;
+      }
+
+      .eusebio-benefits {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .benefit-item {
+        background: #e7e7e7;
+        border-radius: 5px;
+        padding: 28px 38px;
+        border-bottom: 1px solid #d5d8dc;
+      }
+
+      .benefit-item p {
+        color: #011c3a;
+        font-size: 28px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        line-height: 1.3;
+        margin: 0;
+      }
+
+      .benefit-item strong {
+        font-weight: 600;
+      }
+
+      .btn-contato {
+        background: #ff152a;
+        color: #fffef7;
+        font-size: 24px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        padding: 14px 48px;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        box-shadow: -8px 8px 0px #011c3a;
+        transition: all 0.3s ease;
+        align-self: flex-start;
+        outline: 1px #ff152a solid;
+        outline-offset: -1px;
+      }
+
+      .btn-contato:hover {
+        transform: translateY(-2px);
+        box-shadow: -10px 10px 0px rgba(1, 28, 58, 0.8);
+      }
+
+      .eusebio-right {
+        display: flex;
+        justify-content: center;
+      }
+
+      .eusebio-gallery {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        max-width: 550px;
+      }
+
+      .eusebio-gallery img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      /* Seção Tem um imóvel para vender */
+      .section-vender {
+        background: #f6f6f6;
+        padding: 80px 20px;
+        margin-left: -20px;
+        margin-right: -20px;
+        margin-bottom: 60px;
+      }
+
+      .vender-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .vender-icon {
+        width: 60px;
+        height: 60px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        border: 2px solid #011c3a;
+      }
+
+      .vender-title {
+        color: #011c3a;
+        font-size: 56px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        max-width: 1000px;
+        position: relative;
+      }
+
+      .vender-title strong {
+        font-weight: 700;
+      }
+
+      .badge-315 {
+        display: inline-block;
+        background: #ff152a;
+        color: white;
+        font-size: 28px;
+        font-weight: 700;
+        padding: 6px 16px;
+        border-radius: 6px;
+        margin: 0 8px;
+        vertical-align: middle;
+      }
+
+      .vender-subtitle {
+        color: black;
+        font-size: 32px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        line-height: 1.2;
+        margin-bottom: 50px;
+        max-width: 900px;
+      }
+
+      .vender-subtitle strong {
+        font-weight: 700;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+        gap: 0;
+        width: 100%;
+        max-width: 1400px;
+        margin-bottom: 50px;
+        align-items: center;
+      }
+
+      .service-card {
+        background: #011c3a;
+        border-radius: 27px;
+        padding: 35px 25px;
+        box-shadow: -8px 8px 0px #00448b;
+        border: 1px solid #011c3a;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        position: relative;
+        min-height: 320px;
+        transition: transform 0.3s ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-4px);
+      }
+
+      .service-arrow-between {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+      }
+
+      .service-arrow-between svg {
+        width: 40px;
+        height: 40px;
+      }
+
+      .service-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: #ff152a;
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        padding: 6px 14px;
+        border-radius: 6px;
+      }
+
+      .badge-orange {
+        background: #ff6b35;
+      }
+
+      .service-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      .service-title {
+        color: white;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        line-height: 1.4;
+        text-align: center;
+        flex: 1;
+      }
+
+      .btn-contato-vender {
+        background: #ff152a;
+        color: white;
+        font-size: 24px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        padding: 16px 50px;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        box-shadow: -8px 8px 0px #011c3a;
+        transition: all 0.3s ease;
+      }
+
+      .btn-contato-vender:hover {
+        transform: translateY(-2px);
+        box-shadow: -10px 10px 0px #011c3a;
+      }
+
+      /* Seção Diferenciais RE/MAX */
+      .section-diferenciais {
+        background: #011c3a;
+        padding: 80px 0;
+        margin-left: -20px;
+        margin-right: -20px;
+        margin-bottom: 60px;
+      }
+
+      .diferenciais-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 80px;
+        align-items: center;
+      }
+
+      .diferenciais-left {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .diferenciais-title {
+        color: white;
+        font-size: 64px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        line-height: 1.1;
+      }
+
+      .diferenciais-title strong {
+        font-weight: 700;
+      }
+
+      .diferenciais-right {
+        display: flex;
+        justify-content: center;
+      }
+
+      .diferenciais-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        width: 100%;
+        max-width: 650px;
+      }
+
+      .diferencial-card {
+        background: white;
+        border-radius: 14px;
+        padding: 60px 40px;
+        border: 1px solid #282828;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .diferencial-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .diferencial-card p {
+        color: #011c3a;
+        font-size: 26px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        line-height: 1.5;
+        text-align: center;
+        margin: 0;
+      }
+
+      /* Seção Localização */
+      .section-localizacao {
+        background: #f8f9fa;
+        padding: 80px 20px 100px;
+        margin-bottom: 0;
+      }
+
+      .localizacao-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .localizacao-title {
+        color: #1a1a1a;
+        font-size: 64px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        margin-bottom: 40px;
+        text-align: center;
+      }
+
+      .map-container {
+        width: 100%;
+        max-width: 900px;
+        height: 450px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .map-container iframe {
+        width: 100%;
+        height: 100%;
+      }
+
+      .localizacao-address {
+        color: #666;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        text-align: center;
+        margin-bottom: 40px;
+        max-width: 800px;
+        line-height: 1.6;
+      }
+
+      .social-media {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .social-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #d4af37;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .social-icon:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+        background: #c19b2e;
+      }
+
+      .social-icon svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .footer {
+        background: #ffffff; /* branco igual ao fundo da logo */
+        padding: 60px 20px 40px;
+        border-top: 1px solid #e0e0e0; /* se quiser tudo clean, pode remover essa linha */
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-logo {
+        width: 200px;
+        height: auto;
+        margin-bottom: 30px;
+      }
+
+      .footer-info {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .footer-company {
+        color: #1a1a1a;
+        font-size: 24px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .footer-address {
+        color: #666;
+        font-size: 16px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      .footer-divider {
+        width: 100%;
+        max-width: 1000px;
+        height: 1px;
+        background: #17a2b8;
+        margin: 30px 0;
+      }
+
+      .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+      }
+
+      .footer-copyright {
+        color: #999;
+        font-size: 14px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-style: italic;
+        margin: 0;
+        text-align: center;
+      }
+
+      .footer-links {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .footer-links a {
+        color: #666;
+        font-size: 14px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: #1a1a1a;
+      }
+
+      .footer-links .separator {
+        color: #999;
+        font-size: 14px;
+      }
+
+      .btn-footer {
+        background: #17a2b8;
+        color: white;
+        font-size: 16px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        padding: 14px 40px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+      }
+
+      .btn-footer:hover {
+        background: #138496;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+      }
+
+      /* Responsividade Tablet */
+      @media (max-width: 1024px) {
+        .diferenciais-container {
+          grid-template-columns: 1fr;
+          gap: 50px;
+        }
+
+        .diferenciais-title {
+          font-size: 48px;
+          text-align: center;
+        }
+
+        .diferenciais-grid {
+          max-width: 100%;
+        }
+
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .vender-title {
+          font-size: 42px;
+        }
+
+        .vender-subtitle {
+          font-size: 24px;
+        }
+
+        .cards-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+
+        .section-title {
+          font-size: 36px;
+        }
+      }
+
+      /* Responsividade Mobile */
+      @media (max-width: 768px) {
+        .header {
+          padding: 15px 0;
+        }
+
+        .navbar-container {
+          padding: 0 20px;
+        }
+
+        .logo img {
+          height: 45px;
+        }
+
+        .nav-menu {
+          position: fixed;
+          top: 0;
+          left: -100%;
+          width: 80%;
+          height: 100vh;
+          background: #011c3a;
+          flex-direction: column;
+          padding: 100px 30px 30px;
+          gap: 30px;
+          transition: left 0.3s ease;
+        }
+
+        .nav-menu.active {
+          left: 0;
+        }
+
+        .nav-menu a {
+          font-size: 20px;
+        }
+
+        .btn-header {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: flex;
+        }
+
+        .hero {
+          min-height: 600px;
+          height: 100vh;
+        }
+
+        .hero-content {
+          padding: 0 20px;
+        }
+
+        .hero-title {
+          font-size: 40px;
+        }
+
+        .hero-subtitle {
+          font-size: 18px;
+        }
+
+        .btn-hero {
+          font-size: 16px;
+          padding: 14px 40px;
+          width: 100%;
+          max-width: 350px;
+        }
+
+        .whatsapp-float {
+          width: 60px;
+          height: 60px;
+          bottom: 20px;
+          right: 20px;
+        }
+
+        .whatsapp-float svg {
+          width: 32px;
+          height: 32px;
+        }
+
+        .cta-box {
+          padding: 60px 20px;
+          margin-top: -80px;
+          margin-bottom: -80px;
+        }
+
+        .cta-container {
+          padding: 30px 30px;
+          max-width: 100%;
+        }
+
+        .cta-title {
+          font-size: 28px;
+        }
+
+        .section-diferenciais {
+          padding: 50px 0;
+          margin-left: -15px;
+          margin-right: -15px;
+        }
+
+        .diferenciais-container {
+          padding: 0 20px;
+          gap: 40px;
+        }
+
+        .diferenciais-title {
+          font-size: 36px;
+        }
+
+        .diferenciais-grid {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+
+        .diferencial-card {
+          padding: 40px 30px;
+          min-height: 150px;
+        }
+
+        .diferencial-card p {
+          font-size: 20px;
+        }
+
+        .section-localizacao {
+          padding: 50px 20px 70px;
+        }
+
+        .localizacao-title {
+          font-size: 40px;
+        }
+
+        .map-container {
+          height: 300px;
+        }
+
+        .localizacao-address {
+          font-size: 16px;
+        }
+
+        .social-icon {
+          width: 45px;
+          height: 45px;
+        }
+
+        .social-icon svg {
+          width: 20px;
+          height: 20px;
+        }
+
+        .footer {
+          padding: 40px 20px 30px;
+        }
+
+        .footer-logo {
+          width: 150px;
+        }
+
+        .footer-company {
+          font-size: 20px;
+        }
+
+        .footer-address {
+          font-size: 14px;
+        }
+
+        .footer-copyright {
+          font-size: 12px;
+        }
+
+        .footer-links {
+          font-size: 12px;
+        }
+
+        .footer-links a {
+          font-size: 12px;
+        }
+
+        .btn-footer {
+          font-size: 14px;
+          padding: 12px 30px;
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .section-vender {
+          padding: 50px 20px;
+        }
+
+        .vender-title {
+          font-size: 32px;
+        }
+
+        .badge-315 {
+          font-size: 20px;
+          padding: 4px 12px;
+        }
+
+        .vender-subtitle {
+          font-size: 18px;
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .service-arrow-between {
+          display: none;
+        }
+
+        .service-card {
+          min-height: 280px;
+          padding: 30px 20px;
+        }
+
+        .service-title {
+          font-size: 16px;
+        }
+
+        .btn-contato-vender {
+          font-size: 18px;
+          padding: 14px 40px;
+          width: 100%;
+          box-shadow: -6px 6px 0px #011c3a;
+        }
+
+        .section-eusebio {
+          padding: 40px 0;
+          margin-left: -15px;
+          margin-right: -15px;
+        }
+
+        .eusebio-container {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          padding: 0 20px;
+        }
+
+        .eusebio-title {
+          font-size: 36px;
+        }
+
+        .benefit-item {
+          padding: 20px 24px;
+        }
+
+        .benefit-item p {
+          font-size: 18px;
+        }
+
+        .btn-contato {
+          font-size: 18px;
+          padding: 12px 35px;
+          box-shadow: -6px 6px 0px #011c3a;
+          width: 100%;
+        }
+
+        .eusebio-gallery {
+          max-width: 100%;
+          gap: 10px;
+        }
+
+        .cards-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .property-card {
+          aspect-ratio: 1 / 1.4;
+        }
+
+        .section-title {
+          font-size: 32px;
+        }
+
+        .card-image {
+          min-height: 250px;
+        }
+
+        .card-title {
+          font-size: 16px;
+        }
+
+        .card-info {
+          font-size: 12px;
+          gap: 8px;
+        }
+
+        .card-price {
+          font-size: 14px;
+          padding: 6px 12px;
+        }
+
+        .btn-saiba-mais {
+          font-size: 18px;
+          padding: 14px 40px;
+          box-shadow: -6px 6px 0px #001f3f;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header-text {
+          font-size: 12px;
+        }
+
+        .section-title {
+          font-size: 28px;
+        }
+
+        .section-description {
+          font-size: 13px;
+        }
+      }
+
+      .whatsapp-float {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 70px;
+        height: 70px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+        z-index: 1000;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .whatsapp-float svg {
+        width: 40px;
+        height: 40px;
+      }
+      .diferenciais {
+        padding: 40px 40px; /* <-- os 40px do lado afastam */
+      }
+      .whatsapp-float {
+        position: fixed;
+        width: 70px;
+        height: 70px;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        z-index: 999;
+        transition: transform 0.2s;
+      }
+
+      .whatsapp-float img {
+        width: 40px;
+        height: 40px;
+      }
+
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER / NAVIGATION -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="navbar-container">
+          <div class="logo">
+            <img src="logo.img/logo1.png" alt="RE/MAX Seu Imóvel" />
+          </div>
+          <ul class="nav-menu">
+            <li><a href="#lancamentos">Lançamentos</a></li>
+            <li><a href="#loteamentos">Loteamentos</a></li>
+            <li><a href="#casas">Casas</a></li>
+            <li><a href="#apartamentos">Apartamentos</a></li>
+          </ul>
+          <button
+            class="btn-header"
+            onclick="window.open('https://api.whatsapp.com/send/?phone=5585997405443&text=Ol%C3%A1%2C+estou+acessando+o+site+da+Seu+Im%C3%B3vel+e+gostaria+de+obter+mais+informa%C3%A7%C3%B5es+sobre+os+im%C3%B3veis+no+Eus%C3%A9bio.&type=phone_number&app_absent=0', '_blank')"
+          >
+            ENTRAR EM CONTATO
+          </button>
+          <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section
+      class="hero"
+      style="background-image: url('banner.img/banner.jpg')"
+    >
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Viva o melhor do <strong>Eusébio</strong>: conforto, exclusividade e
+          <strong>qualidade de vida</strong>.
+        </h1>
+        <p class="hero-subtitle">
+          Descubra casas e apartamentos à venda em um dos lugares que mais
+          cresce e se valoriza no Ceará.
+        </p>
+        <button
+          class="btn-header"
+          onclick="window.open('https://api.whatsapp.com/send/?phone=5585997405443&text=Ol%C3%A1%2C+estou+acessando+o+site+da+Seu+Im%C3%B3vel+e+gostaria+de+obter+mais+informa%C3%A7%C3%B5es+sobre+os+im%C3%B3veis+no+Eus%C3%A9bio.&type=phone_number&app_absent=0', '_blank')"
+        >
+          ENTRAR EM CONTATO
+        </button>
+      </div>
+    </section>
+
+    <!-- CTA BOX -->
+    <section class="cta-box">
+      <div class="cta-container">
+        <h2 class="cta-title">
+          <strong>Viva no Eusébio</strong>, a cidade destaque em
+          <strong>qualidade de vida</strong>
+        </h2>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- Header Text -->
+      <div class="header-text">
+        Casas, apartamentos e loteamentos <strong>selecionados</strong> nos
+        melhores pontos do Eusébio.
+      </div>
+      <!-- LANÇAMENTOS -->
+      <section class="section" id="lancamentos">
+        <h2 class="section-title">Lançamentos</h2>
+        <p class="section-description">
+          Empreendimentos novos, modernos e com excelente potencial de
+          valorização. As melhores oportunidades começam aqui.
+        </p>
+
+        <div class="cards-grid">
+          <!-- Card 1 -->
+          <article class="property-card">
+            <div class="card-image">
+              <img src="casas.img/casagenesis.jpg" alt="Gênesis - Àgora" />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Gênesis - Àgora</h3>
+              <div class="card-info">
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                  </svg>
+                  <span>150m²</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>3</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M18 2h-6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"
+                    ></path>
+                  </svg>
+                  <span>2</span>
+                </div>
+              </div>
+              <div class="card-price">R$429.000</div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="property-card">
+            <div class="card-image">
+              <img
+                src="casas.img/casarooftop.jpg"
+                alt="ROOFTOP - Hub Engenharia"
+              />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">ROOFTOP - Hub Engenharia</h3>
+              <div class="card-info">
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                  </svg>
+                  <span>189,70 m²</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>3</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M18 2h-6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"
+                    ></path>
+                  </svg>
+                  <span>2</span>
+                </div>
+              </div>
+              <div class="card-price">R$769.000</div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="property-card">
+            <div class="card-image">
+              <img src="casas.img/casamahal.jpg" alt="MAHAL - Quatoor" />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">MAHAL - Quatoor</h3>
+              <div class="card-info">
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                  </svg>
+                  <span>204,75m²</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>3</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M18 2h-6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"
+                    ></path>
+                  </svg>
+                  <span>2</span>
+                </div>
+              </div>
+              <div class="card-price">R$709.900</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="dots">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </section>
+
+      <!-- LOTEAMENTOS -->
+      <section class="section" id="loteamentos">
+        <h2 class="section-title">Loteamentos</h2>
+        <p class="section-description">
+          Para quem sonha em construir do seu jeito, com liberdade e valorização
+          garantida.
+        </p>
+
+        <div class="cards-grid">
+          <!-- Card 1 -->
+          <article class="property-card">
+            <div class="card-image">
+              <img
+                src="lotes.img/loteamentojardinsdolago.png"
+                alt="Jardins do Lago Max"
+              />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Jardins do Lago Max</h3>
+              <div class="card-info">
+                <div class="card-info-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path
+                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                  </svg>
+                  <span>304,67m²</span>
+                </div>
+                <div class="card-info-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <div class="card-info-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path
+                      d="M18 2h-6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="card-price">R$230.000</div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="property-card">
+            <div class="card-image">
+              <img
+                src="lotes.img/loteamentomoradasdoeusebio.jpg"
+                alt="Moradas do Eusébio"
+              />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Moradas do Eusébio</h3>
+              <div class="card-info">
+                <div class="card-info-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path
+                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                  </svg>
+                  <span>200m²</span>
+                </div>
+                <div class="card-info-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M18 2h-6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="card-price">R$196.000</div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="property-card">
+            <div class="card-image">
+              <img src="lotes.img/loteamentobsboatnic.jpg" alt="Bs Botanic" />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Bs Botanic</h3>
+              <div class="card-info">
+                <div class="card-info-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path
+                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                  </svg>
+                  <span>300m²</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M18 2h-6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="card-price">R$435.000</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="dots">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </section>
+
+      <!-- CASAS -->
+      <section class="section" id="casas">
+        <h2 class="section-title">Casas</h2>
+        <p class="section-description">
+          Ambientes simples, condomínios seguros e infraestrutura completa para
+          quem quer viver com conforto e privacidade.
+        </p>
+
+        <div class="cards-grid">
+          <!-- Card 1 -->
+          <article class="property-card">
+            <div class="card-image">
+              <img src="casas.img/casasolta.jpg" alt="Casa Solta" />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Casa Solta</h3>
+              <div class="card-info">
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                  </svg>
+                  <span>198m²</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>3</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M18 2h-6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"
+                    ></path>
+                  </svg>
+                  <span>3</span>
+                </div>
+              </div>
+              <div class="card-price">R$415.000</div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="property-card">
+            <div class="card-image">
+              <img
+                src="casas.img/casaemcondominio.jpg"
+                alt="Casa em Condomínio Fechado"
+              />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Casa em Condomínio Fechado</h3>
+              <div class="card-info">
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                  </svg>
+                  <span>347,40m²</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>4</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M18 2h-6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"
+                    ></path>
+                  </svg>
+                  <span>2</span>
+                </div>
+              </div>
+              <div class="card-price">R$899.000</div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="property-card">
+            <div class="card-image">
+              <img src="casas.img/casasolta2.jpg" alt="Casa Solta" />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Casa Solta</h3>
+              <div class="card-info">
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                  </svg>
+                  <span>156m²</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>3</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M18 2h-6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"
+                    ></path>
+                  </svg>
+                  <span>2</span>
+                </div>
+              </div>
+              <div class="card-price">R$405.000</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="dots">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </section>
+
+      <!-- APARTAMENTOS -->
+      <section class="section" id="apartamentos">
+        <h2 class="section-title">Apartamentos</h2>
+        <p class="section-description">
+          Localização privilegiada, segurança e áreas de lazer planejadas para
+          rotina leve e organizada.
+        </p>
+
+        <div class="cards-grid">
+          <!-- Card 1 -->
+          <article class="property-card">
+            <div class="card-image">
+              <img
+                src="predios/prediobarcelonaresidence.jpg"
+                alt="Barcelona Residence"
+              />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Barcelona Residence</h3>
+              <div class="card-info">
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                  </svg>
+                  <span>83,65m²</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>3</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M18 2h-6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"
+                    ></path>
+                  </svg>
+                  <span>2</span>
+                </div>
+              </div>
+              <div class="card-price">R$620.000</div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="property-card">
+            <div class="card-image">
+              <img
+                src="predios/prediomadriresidence.png"
+                alt="Madri Residence"
+              />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Madri Residence</h3>
+              <div class="card-info">
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                  </svg>
+                  <span>77m²</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>3</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M18 2h-6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"
+                    ></path>
+                  </svg>
+                  <span>2</span>
+                </div>
+              </div>
+              <div class="card-price">R$599.000</div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="property-card">
+            <div class="card-image">
+              <img
+                src="predios/prediojacaranda.jpg"
+                alt="Condomínio Jacarandá"
+              />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Condomínio Jacarandá</h3>
+              <div class="card-info">
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                  </svg>
+                  <span>75m²</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>3</span>
+                </div>
+                <div class="card-info-item">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M18 2h-6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"
+                    ></path>
+                  </svg>
+                  <span>2</span>
+                </div>
+              </div>
+              <div class="card-price">R$100.000</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="dots">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </section>
+
+      <!-- POR QUE MORAR NO EUSÉBIO -->
+      <section class="section-eusebio" id="quem-somos">
+        <div class="eusebio-container">
+          <div class="eusebio-left">
+            <div class="eusebio-icon">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+            </div>
+            <h2 class="eusebio-title">
+              Por que morar no <strong>Eusébio</strong>?
+            </h2>
+
+            <div class="eusebio-benefits">
+              <div class="benefit-item">
+                <p>
+                  <strong>Qualidade de vida:</strong> clima ameno e ruas
+                  arborizadas.
+                </p>
+              </div>
+              <div class="benefit-item">
+                <p>
+                  <strong>Acesso rápido:</strong> pela CE-040 e Anel Viário.
+                </p>
+              </div>
+              <div class="benefit-item">
+                <p>
+                  <strong>Infraestrutura completa:</strong> escolas,
+                  restaurantes, shoppings e serviços.
+                </p>
+              </div>
+              <div class="benefit-item">
+                <p>
+                  <strong>Valorização constante:</strong> imóveis com alta
+                  rentabilidade e demanda crescente.
+                </p>
+              </div>
+            </div>
+
+           <a href="https://contato.seuimovel.com.br/eusebio-site"
+   class="btn-contato"
+   target="_blank">
+  Entrar em Contato
+</a>
+
+
+          <div class="eusebio-right">
+            <div class="eusebio-gallery">
+              <img src="familia.img/familia.jpg" alt="Família feliz" />
+              <img src="familia.img/familia1.jpg" alt="Corrida ao ar livre" />
+              <img src="familia.img/familia2.png" alt="Crianças brincando" />
+              <img src="familia.img/familia3.jpg" alt="Família no parque" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TEM UM IMÓVEL PARA VENDER -->
+      <section class="section-vender">
+        <div class="vender-container">
+          <div class="vender-icon">
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#011C3A"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+          </div>
+
+          <h2 class="vender-title">
+            Tem um imóvel para vender ou alugar no <strong>Eusébio</strong>?
+          </h2>
+
+          <p class="vender-subtitle">
+            <strong>Nós cuidamos de tudo</strong>, com
+            <strong>segurança, transparência</strong> e valorização do seu
+            patrimônio.
+          </p>
+
+          <div class="services-grid">
+            <!-- Card 1 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </div>
+              <h3 class="service-title">
+                Avaliação de<br />propriedade baseada<br />em dados reais.
+              </h3>
+            </div>
+
+            <!-- Seta 1 -->
+            <div class="service-arrow-between">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#3598B0"
+                stroke-width="2.5"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <h3 class="service-title">
+                Orientação sobre<br />como preparar o<br />imóvel para atrair<br />compradores
+                ou<br />locatários.
+              </h3>
+            </div>
+
+            <!-- Seta 2 -->
+            <div class="service-arrow-between">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#3598B0"
+                stroke-width="2.5"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  ></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+              </div>
+              <h3 class="service-title">
+                Divulgação<br />profissional nas<br />maiores<br />plataformas<br />imobiliárias.
+              </h3>
+            </div>
+
+            <!-- Seta 3 -->
+            <div class="service-arrow-between">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#3598B0"
+                stroke-width="2.5"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h3 class="service-title">
+                Atendimento<br />qualificado e<br />acompanhamento<br />até a
+                assinatura do<br />contrato.
+              </h3>
+            </div>
+          </div>
+
+          <a href="https://contato.seuimovel.com.br/eusebio-site"
+   class="btn-contato"
+   target="_blank">
+  Entrar em Contato
+</a>
+
+      </section>
+
+      <!-- DIFERENCIAIS RE/MAX -->
+      <section class="section-diferenciais">
+        <div class="diferenciais-container">
+          <div class="diferenciais-left">
+            <h2 class="diferenciais-title">
+              <strong>Diferenciais</strong> da<br />RE/MAX Seu Imóvel
+            </h2>
+          </div>
+
+          <div class="diferenciais-right">
+            <div class="diferenciais-grid">
+              <!-- Card 1 -->
+              <div class="diferencial-card">
+                <p>Avaliação justa e transparente.</p>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="diferencial-card">
+                <p>Fotos profissionais e apresentação de alto padrão.</p>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="diferencial-card">
+                <p>Divulgação direcionada ao público ideal.</p>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="diferencial-card">
+                <p>Negociação segura e acompanhamento jurídico.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LOCALIZAÇÃO -->
+      <section class="section-localizacao">
+        <div class="localizacao-container">
+          <h2 class="localizacao-title">Localização</h2>
+
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.2857280596737!2d-38.45789!3d-3.8891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c74f3e0c5c5c5c5%3A0x5c5c5c5c5c5c5c5!2sResidencia%20Vittoria!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr"
+              width="100%"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            >
+            </iframe>
+          </div>
+
+          <p class="localizacao-address">
+            Av. Olavo Vasconcelos, S/N, Vila de Jericoacoara, Jijoca, Ceará -
+            CEP 62598-000.
+          </p>
+
+          <div class="social-media">
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="footer">
+      <div class="footer-container">
+        <img
+          src="logo.img/logo.png"
+          alt="RE/MAX Seu Imóvel"
+          class="footer-logo"
+        />
+
+        <div class="footer-info">
+          <p class="footer-address">
+            Avenida Washington Soares, 8660 B<br />
+            Messejana, Fortaleza - CE, 60841-032
+          </p>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            Copyright © Remax Seu Imóvel – Todos os direitos reservados.
+          </p>
+          <div class="footer-links">
+            <a
+              href="https://web.seuimovel.com.br/termos-e-politicas"
+              class="btn-footer"
+              target="_blank"
+            >
+              Acessar termos e políticas
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Header fixo ao rolar
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector(".header");
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Smooth scroll para os links do menu
+      document.querySelectorAll(".nav-menu a").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          const targetSection = document.querySelector(targetId);
+
+          if (targetSection) {
+            const headerHeight = 80;
+            const targetPosition = targetSection.offsetTop - headerHeight;
+
+            window.scrollTo({
+              top: targetPosition,
+              behavior: "smooth",
+            });
+          }
+
+          // Fechar menu mobile se estiver aberto
+          document.querySelector(".nav-menu").classList.remove("active");
+        });
+      });
+
+      // Toggle menu mobile
+      document
+        .querySelector(".menu-toggle")
+        .addEventListener("click", function () {
+          document.querySelector(".nav-menu").classList.toggle("active");
+        });
+
+      // Fechar menu ao clicar fora
+      document.addEventListener("click", function (e) {
+        const menu = document.querySelector(".nav-menu");
+        const toggle = document.querySelector(".menu-toggle");
+
+        if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+          menu.classList.remove("active");
+        }
+      });
+    </script>
+    <a
+      href="https://api.whatsapp.com/send/?phone=5585997405443&text=Olá%2C+quero+mais+informações"
+      class="whatsapp-float"
+      target="_blank"
+    >
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+      />
+    </a>
+  </body>
+</html>
